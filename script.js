@@ -332,9 +332,40 @@ function validateContactForm() {
 // 📨 FORMULIER SUBMIT HANDLER
 function handleFormSubmit(event) {
     event.preventDefault(); // Voorkom standaard form submit
-    
-    // Valideer en reset formulier bij succes
+
+    // Valideer formulier
     if (validateContactForm()) {
+        // Haal formulier data op
+        const formData = new FormData(document.getElementById('contact-form'));
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const phone = formData.get('phone');
+        const address = formData.get('address') || 'Niet opgegeven';
+        const project = formData.get('project') || 'Niet opgegeven';
+        const message = formData.get('message');
+
+        // Maak mailto link met alle gegevens
+        const subject = encodeURIComponent('Offerte aanvraag - Keurig Kozijn');
+        const body = encodeURIComponent(`
+Naam: ${name}
+Email: ${email}
+Telefoon: ${phone}
+Adres: ${address}
+Type project: ${project}
+
+Bericht:
+${message}
+
+---
+Verzonden via contactformulier Keurig Kozijn
+        `);
+
+        const mailtoLink = `mailto:csmichaloliakos@hotmail.com?subject=${subject}&body=${body}`;
+
+        // Open email client
+        window.location.href = mailtoLink;
+
+        // Reset formulier
         document.getElementById('contact-form').reset();
     }
 }
