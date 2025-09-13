@@ -1,0 +1,1027 @@
+/* ========================================
+   KEURIG KOZIJN WEBSITE - STYLESHEET
+   ========================================
+   
+   💡 TIP: Hier kun je eenvoudig de kleuren en stijl van de hele website aanpassen!
+   Alle belangrijke waarden staan in de CSS variabelen hieronder.
+*/
+
+:root {
+    /* 🎨 KLEUREN - Hier kun je de kleuren van de website aanpassen */
+    --primary-color: #000000;          /* Hoofdkleur (zwart) - gebruikt voor tekst en borders */
+    --secondary-color: #ffffff;        /* Secundaire kleur (wit) - achtergronden en buttons */
+    --accent-color: #333333;           /* Accent kleur (donkergrijs) - hover effecten */
+    --text-color: #333333;             /* Standaard tekstkleur */
+    --text-light: #666666;             /* Lichtere tekst voor subteksten */
+    --background-color: #ffffff;       /* Hoofdachtergrond */
+    --section-bg: #f8f9fa;             /* Achtergrond voor secties */
+    --border-color: #e9ecef;           /* Kleur voor randen */
+    --hover-color: #f0f0f0;            /* Hover achtergronden */
+    
+    /* ⭐ STER KLEUREN - Voor het logo sparkle effect (zakelijke grijstinten) */
+    --star-color-1: #666666;
+    --star-color-2: #888888;
+    --star-color-3: #999999;
+    --star-color-4: #777777;
+    --star-color-5: #555555;
+    
+    /* 🎯 SCHADUWEN EN EFFECTEN */
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);          /* Standaard schaduw */
+    --shadow-hover: 0 5px 20px rgba(0, 0, 0, 0.15);   /* Hover schaduw */
+    
+    /* 📐 AFMETINGEN EN STIJL */
+    --border-radius: 8px;                              /* Afronding van hoeken */
+    --max-width: 1200px;                               /* Maximum breedte van content */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  /* Lettertype */
+    --transition: all 0.3s ease;                       /* Standaard animatie snelheid */
+}
+
+/* ========================================
+   BASIS STYLING
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    overflow-x: hidden; /* Voorkomt horizontale scroll bij animaties */
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ========================================
+   PAGINA TRANSITIE EFFECTEN
+   ========================================
+   
+   💡 TIP: Hier kun je de snelheid van page transitions aanpassen.
+   Verander de timing in de keyframes voor snellere/langzamere overgangen.
+*/
+
+.page-swipe-out {
+    animation: swipeOut 0.25s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+.page-swipe-in {
+    animation: swipeIn 0.3s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+@keyframes swipeOut {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100vw);
+        opacity: 0.8;
+    }
+}
+
+@keyframes swipeIn {
+    0% {
+        transform: translateX(100vw);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(90deg, var(--background-color) 0%, var(--section-bg) 100%);
+    z-index: 9999;
+    transform: translateX(100vw);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 1, 1);
+    will-change: transform;
+}
+
+.transition-overlay.active {
+    transform: translateX(0);
+}
+
+/* Performance optimalisaties voor smooth animaties */
+.page-swipe-out,
+.page-swipe-in,
+.transition-overlay {
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+/* ========================================
+   HEADER & NAVIGATIE
+   ========================================
+   
+   💡 TIP: Logo grootte aanpassen? Verander de width/height van .logo-icon
+   Menubar hoogte? Pas .navbar padding aan.
+*/
+
+.header {
+    background-color: var(--secondary-color);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    padding: 1rem 0;
+}
+
+.nav-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* LOGO STYLING - Custom CSS logo zonder afbeeldingen */
+.nav-logo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-icon {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--primary-color);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--secondary-color);
+    transition: var(--transition);
+}
+
+/* Kozijn kruisroeden effect */
+.logo-icon::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 1.5px;
+    background: var(--primary-color);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo-icon::after {
+    content: '';
+    position: absolute;
+    width: 1.5px;
+    height: 30px;
+    background: var(--primary-color);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Glas panelen voor kozijn effect */
+.window-pane-1, .window-pane-2, .window-pane-3, .window-pane-4 {
+    position: absolute;
+    border: 1px solid var(--primary-color);
+    background: rgba(135, 206, 235, 0.1); /* Subtiele blauwe tint voor glas */
+}
+
+.window-pane-1 {
+    width: 14px;
+    height: 14px;
+    top: 8px;
+    left: 8px;
+}
+
+.window-pane-2 {
+    width: 14px;
+    height: 14px;
+    top: 8px;
+    right: 8px;
+}
+
+.window-pane-3 {
+    width: 14px;
+    height: 14px;
+    bottom: 8px;
+    left: 8px;
+}
+
+.window-pane-4 {
+    width: 14px;
+    height: 14px;
+    bottom: 8px;
+    right: 8px;
+}
+
+/* Logo tekst styling */
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.logo-text .brand-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 0.5px;
+}
+
+.logo-text .brand-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-light);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.nav-logo:hover .logo-icon {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================
+   STERREN ANIMATIE EFFECT
+   ========================================
+   
+   💡 TIP: Sterren te opvallend? Verander de opacity waarden.
+   Animatie te snel? Pas de animation duration aan (4s, 4.5s).
+   Wil je de sterren uitschakelen? Zet display: none; op .nav-logo::before, .nav-logo::after en .star
+*/
+
+/* Hoofd sterren (via CSS pseudo-elements) */
+.nav-logo::before,
+.nav-logo::after {
+    content: '★';
+    position: absolute;
+    font-size: 16px;
+    color: var(--star-color-1);
+    animation: starTwinkle 4s infinite;
+    text-shadow: 0 0 5px currentColor;
+    opacity: 0.6;
+}
+
+.nav-logo::before {
+    top: -15px;
+    left: -15px;
+    animation-delay: 0s;
+    color: var(--star-color-1);
+}
+
+.nav-logo::after {
+    bottom: -15px;
+    right: -15px;
+    animation-delay: 1.5s;
+    color: var(--star-color-2);
+}
+
+/* Extra sterren (via JavaScript toegevoegd) */
+.star {
+    position: absolute;
+    font-size: 20px;
+    animation: starTwinkle 4.5s infinite;
+    text-shadow: 0 0 3px currentColor;
+    opacity: 0.5;
+}
+
+.star:nth-child(2) {
+    top: -20px;
+    right: 30px;
+    animation-delay: 0.7s;
+    color: var(--star-color-3);
+    font-size: 14px;
+}
+
+.star:nth-child(3) {
+    bottom: -10px;
+    left: 40px;
+    animation-delay: 2s;
+    color: var(--star-color-4);
+    font-size: 18px;
+}
+
+.star:nth-child(4) {
+    top: 50%;
+    left: -25px;
+    animation-delay: 2.8s;
+    color: var(--star-color-5);
+    font-size: 12px;
+}
+
+.star:nth-child(5) {
+    top: -10px;
+    right: 80px;
+    animation-delay: 1.2s;
+    color: var(--star-color-2);
+    font-size: 16px;
+}
+
+.star:nth-child(6) {
+    bottom: 5px;
+    right: 50px;
+    animation-delay: 3.2s;
+    color: var(--star-color-1);
+    font-size: 10px;
+}
+
+/* Ster animatie - subtiel en zakelijk */
+@keyframes starTwinkle {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(0.9) rotate(0deg);
+    }
+    25% {
+        opacity: 0.6;
+        transform: scale(1.05) rotate(90deg);
+    }
+    50% {
+        opacity: 0.4;
+        transform: scale(1) rotate(180deg);
+    }
+    75% {
+        opacity: 0.5;
+        transform: scale(1.02) rotate(270deg);
+    }
+}
+
+/* NAVIGATIE MENU */
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* HAMBURGER MENU voor mobiel */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 3px 0;
+    transition: var(--transition);
+    border-radius: 2px;
+}
+
+/* Hamburger animatie naar X */
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* ========================================
+   HERO SECTIE (Hoofdbanner)
+   ======================================== */
+
+.hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    color: var(--secondary-color);
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.highlight {
+    color: var(--secondary-color);
+    text-decoration: underline;
+    text-decoration-color: var(--secondary-color);
+    text-underline-offset: 8px;
+    text-decoration-thickness: 3px;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ========================================
+   OVER ONS SECTIE
+   ======================================== */
+
+.about {
+    padding: 100px 0;
+    background-color: var(--section-bg);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-text h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+}
+
+/* Highlights cards */
+.highlights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.highlight-item {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.highlight-item h3 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.highlight-item p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.about-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+/* ========================================
+   DIENSTEN SECTIE
+   ======================================== */
+
+.services {
+    padding: 100px 0;
+}
+
+.services h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 4rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background-color: var(--secondary-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.service-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.service-card p {
+    color: var(--text-light);
+}
+
+/* ========================================
+   PORTFOLIO/KOZIJNEN SECTIE
+   ======================================== */
+
+.portfolio {
+    padding: 100px 0;
+    background-color: var(--section-bg);
+}
+
+.portfolio h1,
+.portfolio h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 4rem;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.portfolio-item {
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.portfolio-info {
+    padding: 1.5rem;
+}
+
+.portfolio-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.portfolio-info p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* ========================================
+   CONTACT SECTIE
+   ======================================== */
+
+.contact {
+    padding: 100px 0;
+}
+
+.contact h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 4rem;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+/* Contact formulier styling */
+.contact-form {
+    background-color: var(--section-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-family: var(--font-family);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.submit-button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.submit-button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+/* Contact informatie */
+.contact-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.contact-info p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.contact-details {
+    background-color: var(--section-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    margin-top: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.contact-item strong {
+    color: var(--primary-color);
+    width: 80px;
+}
+
+/* ========================================
+   SCROLL ANIMATIES
+   ========================================
+   
+   💡 TIP: Animaties te snel/langzaam? Pas de transition duration aan (0.8s).
+   Te vroeg/laat triggeren? Verander rootMargin in JavaScript.
+*/
+
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.scroll-animate.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-animate-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease-out;
+}
+
+.scroll-animate-left.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scroll-animate-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s ease-out;
+}
+
+.scroll-animate-right.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scroll-animate-scale {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.8s ease-out;
+}
+
+.scroll-animate-scale.animate {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Stagger animatie voor meerdere elementen tegelijk */
+.stagger-animation {
+    animation-delay: 0.1s;
+}
+
+.stagger-animation:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.stagger-animation:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.stagger-animation:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.footer {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 3rem 0;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2rem;
+    align-items: center;
+}
+
+.footer-info {
+    text-align: center;
+}
+
+.footer-info p {
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-nav a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    opacity: 0.9;
+    transition: var(--transition);
+}
+
+.footer-nav a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ========================================
+   
+   💡 TIP: Breakpoints aanpassen? Verander de max-width waarden.
+   Mobile logo te groot/klein? Pas .logo-icon afmetingen aan.
+*/
+
+@media (max-width: 768px) {
+    /* Logo aanpassingen voor mobiel */
+    .nav-logo {
+        gap: 0.5rem;
+    }
+    
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .logo-icon::before {
+        width: 24px;
+    }
+    
+    .logo-icon::after {
+        height: 24px;
+    }
+    
+    .window-pane-1, .window-pane-2, .window-pane-3, .window-pane-4 {
+        width: 11px;
+        height: 11px;
+    }
+    
+    .logo-text .brand-name {
+        font-size: 1.4rem;
+    }
+    
+    .logo-text .brand-subtitle {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+    
+    .navbar {
+        padding: 0.8rem 0;
+    }
+    
+    /* Mobiel menu */
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        flex-direction: column;
+        background-color: var(--secondary-color);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: var(--shadow);
+        padding: 2rem 0;
+        gap: 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu .nav-link {
+        display: block;
+        padding: 1rem;
+        margin: 0.5rem 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    /* Content aanpassingen voor mobiel */
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .highlights {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .footer-nav {
+        justify-content: center;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 60px 0;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .about,
+    .services,
+    .portfolio,
+    .contact {
+        padding: 60px 0;
+    }
+
+    .about-text h2,
+    .services h2,
+    .portfolio h2,
+    .contact h1 {
+        font-size: 2rem;
+    }
+}
+
+/* ========================================
+   EINDE STYLESHEET
+   ========================================
+   
+   🎉 Gefeliciteerd! Je hebt het einde van de stylesheet bereikt.
+   
+   📝 ONDERHOUD TIPS:
+   - Alle kleuren staan in de :root variabelen bovenaan
+   - Logo aanpassingen: zoek naar "LOGO STYLING"  
+   - Animatie snelheden: zoek naar "transition" en "animation"
+   - Responsive: scroll naar de "@media" secties onderaan
+   - Nieuwe kleuren toevoegen? Voeg ze toe aan :root en gebruik var(--nieuwe-kleur)
+   
+   🔧 VEEL VOORKOMENDE AANPASSINGEN:
+   - Andere hoofdkleur: verander --primary-color
+   - Logo groter/kleiner: pas .logo-icon width/height aan
+   - Snellere animaties: verklein de seconden in transitions
+   - Andere lettertype: wijzig --font-family
+   - Meer/minder schaduwen: pas --shadow waardes aan
+   
+   Happy coding! 🚀
+*/

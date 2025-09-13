@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Keurig Kozijn</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <div class="logo-icon">
+                        <div class="window-pane-1"></div>
+                        <div class="window-pane-2"></div>
+                        <div class="window-pane-3"></div>
+                        <div class="window-pane-4"></div>
+                    </div>
+                    <div class="logo-text">
+                        <div class="brand-name">KEURIG</div>
+                        <div class="brand-subtitle">KOZIJN</div>
+                    </div>
+                </div>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="kozijnen.html" class="nav-link">Kozijnen</a>
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </div>
+                
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact">
+            <div class="container">
+                <h1>Contact Opnemen</h1>
+                
+                <div class="contact-content">
+                    <div class="contact-form-container scroll-animate-left">
+                        <form class="contact-form" id="contact-form" onsubmit="handleFormSubmit(event)">
+                            <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Vraag uw offerte aan</h3>
+                            <p style="color: var(--text-light); margin-bottom: 2rem;">
+                                Vul het formulier in en wij nemen zo spoedig mogelijk contact met u op voor een vrijblijvende offerte.
+                            </p>
+                            
+                            <div class="form-group">
+                                <label for="name">Naam *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">E-mailadres *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Telefoonnummer *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="address">Adres</label>
+                                <input type="text" id="address" name="address" placeholder="Straat + huisnummer, plaats">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="project">Type project</label>
+                                <select id="project" name="project" style="width: 100%; padding: 0.8rem; border: 2px solid var(--border-color); border-radius: var(--border-radius); font-family: var(--font-family); font-size: 1rem;">
+                                    <option value="">Selecteer type project</option>
+                                    <option value="nieuwbouw">Nieuwbouw kozijnen</option>
+                                    <option value="vervanging">Kozijn vervanging</option>
+                                    <option value="renovatie">Renovatie & onderhoud</option>
+                                    <option value="maatwerk">Maatwerk oplossing</option>
+                                    <option value="anders">Anders</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Bericht *</label>
+                                <textarea id="message" name="message" required placeholder="Beschrijf uw project en eventuele specifieke wensen..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-button">Verstuur Aanvraag</button>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-info scroll-animate-right">
+                        <h3>Direct Contact</h3>
+                        <p>Heeft u vragen of wilt u direct contact? Bel of mail ons gerust. Wij helpen u graag verder met advies over uw kozijnenproject.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <strong>Telefoon:</strong>
+                                <span>06 - 12 34 56 78</span>
+                            </div>
+                            <div class="contact-item">
+                                <strong>Email:</strong>
+                                <span>info@keurigkozijn.nl</span>
+                            </div>
+                            <div class="contact-item">
+                                <strong>Werkdagen:</strong>
+                                <span>Maandag t/m Vrijdag</span>
+                            </div>
+                            <div class="contact-item">
+                                <strong>Tijden:</strong>
+                                <span>08:00 - 17:00 uur</span>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 2rem; padding: 1.5rem; background-color: var(--section-bg); border-radius: var(--border-radius);">
+                            <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Waarom Keurig Kozijn?</h4>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 0.5rem; color: var(--text-light);">✓ 20 jaar ervaring in kozijnwerk</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--text-light);">✓ Persoonlijke service en maatwerk</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--text-light);">✓ Vrijblijvende offertes</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--text-light);">✓ Kwaliteit gegarandeerd</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--text-light);">✓ Van ontwerp tot plaatsing</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-top: 2rem; text-align: center;">
+                            <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Bekijk ook onze kozijnen</h4>
+                            <a href="kozijnen.html" style="display: inline-block; background-color: var(--accent-color); color: var(--secondary-color); padding: 0.8rem 1.5rem; text-decoration: none; border-radius: var(--border-radius); font-weight: 500; transition: var(--transition);">Portfolio Bekijken</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 4rem; text-align: center; padding: 2rem; background-color: var(--section-bg); border-radius: var(--border-radius);">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Bezoek aan Locatie</h3>
+                    <p style="color: var(--text-light); margin-bottom: 1rem;">
+                        Voor een persoonlijk gesprek en om uw project te bekijken komen wij graag bij u langs. 
+                        Dit is altijd vrijblijvend en geeft ons de mogelijkheid om u het beste advies te geven.
+                    </p>
+                    <p style="color: var(--text-color); font-weight: 500;">
+                        Werkgebied: Geheel Nederland
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span style="color: var(--secondary-color); font-weight: 700; font-size: 1.2rem;">KEURIG KOZIJN</span>
+                </div>
+                <div class="footer-info">
+                    <p>&copy; 2024 Keurig Kozijn. Alle rechten voorbehouden.</p>
+                    <p>Maatwerk kozijnen met 20 jaar ervaring</p>
+                </div>
+                <div class="footer-nav">
+                    <a href="index.html">Home</a>
+                    <a href="kozijnen.html">Kozijnen</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
